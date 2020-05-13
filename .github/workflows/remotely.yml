@@ -9,6 +9,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+    - name: Sleep for 30 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '60s'
     - name: trigger single Job
       uses: appleboy/jenkins-action@master
       with:
