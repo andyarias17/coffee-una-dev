@@ -1,14 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Webhook to Jenkins
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on:
-  push:
-    branches: [ master ]
-
-- name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v1
-      env:
-        webhook_url: ${{ secrets.WEBHOOK_URL }}
+- name: Webhook
+  uses: joelwmale/webhook-action@master
+  env:
+    WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+    data: "Hello from github actions!"
