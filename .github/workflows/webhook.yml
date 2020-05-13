@@ -1,5 +1,12 @@
-- name: Webhook
-  uses: joelwmale/webhook-action@master
-  env:
-    WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-    data: "Hello from github actions!"
+name: Trigger Jenkins job when a pull request is merged to a branch
+on: 
+    pull_request_review:
+      types: [closed]
+jobs:
+    triggerJenkins:
+        name: Trigger Jenkins
+        runs-on: ubuntu-latest
+        steps:
+            if: github.event.pull_request.merged == true
+            -   name: trigger
+                run: curl -X POST https://admin:${{secrets.JenkinsToken}}@3afb4e34.ngrok.io/job/trigger-coffee-una-dev/build
